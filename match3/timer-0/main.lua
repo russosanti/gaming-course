@@ -17,6 +17,7 @@ WINDOW_HEIGHT = 720
 function love.load()
     currentSecond = 0
     secondTimer = 0
+    timer = 0
 
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
@@ -41,6 +42,7 @@ end
 
 function love.update(dt)
     secondTimer = secondTimer + dt
+    timer = timer + dt
 
     if secondTimer > 1 then
         currentSecond = currentSecond + 1
@@ -50,7 +52,9 @@ end
 
 function love.draw()
     push.start()
-    love.graphics.printf('Timer: ' .. tostring(currentSecond) .. ' seconds',
+    love.graphics.printf('Timer 1: ' .. tostring(currentSecond) .. ' seconds',
+        0, VIRTUAL_HEIGHT / 2 - 20, VIRTUAL_WIDTH, 'center')
+    love.graphics.printf('Timer: ' .. tostring(math.floor(timer)) .. ' seconds',
         0, VIRTUAL_HEIGHT / 2 - 6, VIRTUAL_WIDTH, 'center')
     push.finish()
 end
